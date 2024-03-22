@@ -4,10 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/frame_container"
     android:background="@drawable/xrootmenubg"
     tools:context=".WelcomeActivity">
 
     <ImageButton
+        android:id="@+id/btnAbout"
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:background="@drawable/ic_info"
@@ -40,9 +42,9 @@
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:layout_marginTop="20dp"
-        android:layout_marginStart="26dp"
+        android:layout_marginStart="24dp"
         android:layout_marginEnd="26dp"
-        android:background="@drawable/xmainmbcabtnup"
+        android:background="@drawable/clickmbcaselector"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/headBca" />
@@ -52,9 +54,9 @@
         android:id="@+id/klikBca"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:layout_marginStart="26dp"
+        android:layout_marginStart="24dp"
         android:layout_marginEnd="26dp"
-        android:background="@drawable/xmainklikbcabtnup"
+        android:background="@drawable/clickklikbcaselector"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/mBca" />
@@ -62,9 +64,9 @@
         android:id="@+id/infoBca"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:layout_marginStart="26dp"
+        android:layout_marginStart="24dp"
         android:layout_marginEnd="26dp"
-        android:background="@drawable/xmaininfobcabtnup"
+        android:background="@drawable/clickinfobcaselector"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/klikBca" />
@@ -73,9 +75,9 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="16dp"
-        android:layout_marginStart="26dp"
+        android:layout_marginStart="24dp"
         android:layout_marginEnd="26dp"
-        android:background="@drawable/rootbtnbukarekeningbaruup"
+        android:background="@drawable/clicknewrekselector"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/infoBca" />
@@ -85,21 +87,38 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="12dp"
-        android:layout_marginStart="26dp"
+        android:layout_marginStart="24dp"
         android:layout_marginEnd="26dp"
-        android:background="@drawable/rootbtnflazzup"
+        android:background="@drawable/clickflazzselector"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/newRek" />
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
     <ImageView
         android:id="@+id/welcome"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/xticker1"
+        android:layout_height="75dp"
+        android:background="@drawable/xticker1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:scaleType="fitEnd"/>
 
+        <View
+            android:id="@+id/shine"
+            android:layout_width="150dp"
+            android:layout_height="75dp"
+            android:background="@drawable/shiningwelcome"
+            android:scaleType="fitEnd"
+            android:layout_marginStart="-150dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

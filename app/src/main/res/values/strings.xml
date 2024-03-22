@@ -3,4 +3,16 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="copyright_content_wording_text">\n<b>BCA</b> All Rights Reserved.</string>
+    <string name="copyright_content_wording_text2">To deactivate your BCA mobile account or for further information, please contact Halo BCA 1500888.\n\n</string>
+    <string name="version_about"><b>Version</b></string>
+    <string name="version_about2">4.2.4 (1222)</string>
+    <string name="copyright_c_label_text">Copyright © 2022</string>
+    <string name="terms_of_service_text"><u>Terms of service</u></string>
+    <string name="about">About</string>
+    <string name="nfc_request_active_text">Aktifkan fitur NFC pada\nponsel Anda.</string>
+    <string name="title_mybca_pemrek_popup">Yuk, coba pengalaman baru buka rekening &amp; bertransaksi di aplikasi myBCA!</string>
+    <string name="body_mybca_pemrek_popup_google">Dengan menekan tombol di bawah, Anda akan diarahkan ke Play Store</string>
 </resources>
