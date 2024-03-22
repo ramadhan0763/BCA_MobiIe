@@ -103,8 +103,6 @@ class WelcomeActivity : AppCompatActivity() {
                 intentUri(Intent.ACTION_VIEW, Uri.parse(url))
             }
             btnTetapBcaMob.setOnClickListener {
-                val intent = Intent(Settings.ACTION_NFC_SETTINGS)
-                startActivity(intent)
             }
         }
     }

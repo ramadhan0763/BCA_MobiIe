@@ -15,4 +15,5 @@
     <string name="nfc_request_active_text">Aktifkan fitur NFC pada\nponsel Anda.</string>
     <string name="title_mybca_pemrek_popup">Yuk, coba pengalaman baru buka rekening &amp; bertransaksi di aplikasi myBCA!</string>
     <string name="body_mybca_pemrek_popup_google">Dengan menekan tombol di bawah, Anda akan diarahkan ke Play Store</string>
+    <string name="title_menu_1">Buka rekening dari handphone \\ntanpa minimum setoran awal</string>
 </resources>
