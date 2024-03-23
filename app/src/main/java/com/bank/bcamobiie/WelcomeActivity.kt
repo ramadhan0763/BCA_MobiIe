@@ -1,7 +1,9 @@
 package com.bank.bcamobiie
 
+
 import android.content.Context
 import android.content.Intent
+import android.location.LocationManager
 import android.net.Uri
 import android.nfc.NfcAdapter
 import android.os.Bundle
@@ -14,7 +16,9 @@ import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.bank.bcamobiie.databinding.ActivityWelcomeBinding
 import com.bank.bcamobiie.databinding.AlertFlazzBinding
+import com.bank.bcamobiie.databinding.AlertLogMbcaBinding
 import com.bank.bcamobiie.databinding.AlertNewRekBinding
+import com.bank.bcamobiie.newrek.OnboardNewRekActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.coroutines.Runnable
 
@@ -24,11 +28,17 @@ class WelcomeActivity : AppCompatActivity() {
     private lateinit var welcome: ImageView
     private var _binding: ActivityWelcomeBinding? = null
     private val binding: ActivityWelcomeBinding get() = _binding!!
-    private var _alertFlazzBinding : AlertFlazzBinding? = null
-    private val alertFlazzBinding : AlertFlazzBinding get() = _alertFlazzBinding!!
+    private var _alertFlazzBinding: AlertFlazzBinding? = null
+    private val alertFlazzBinding: AlertFlazzBinding get() = _alertFlazzBinding!!
 
-    private var _alertNewRekBinding : AlertNewRekBinding? = null
-    private val alertNewRekBinding : AlertNewRekBinding get() = _alertNewRekBinding!!
+    private var _alertNewRekBinding: AlertNewRekBinding? = null
+    private val alertNewRekBinding: AlertNewRekBinding get() = _alertNewRekBinding!!
+
+    private var _alertMbcaBinding: AlertLogMbcaBinding? = null
+    private val alertMbcaBinding: AlertLogMbcaBinding get() = _alertMbcaBinding!!
+    private val LOCATION_REQUEST_CODE = 123
+
+    private var mBcaButtonClicked = false
 
     private val handler = Handler()
 
@@ -43,12 +53,19 @@ class WelcomeActivity : AppCompatActivity() {
             btnAbout.setOnClickListener {
                 intentAct(this@WelcomeActivity, AboutActivity::class.java)
             }
+
+            mBca.setOnClickListener {
+                mBcaButtonClicked = true
+                checkLocationAndOpenSettingsIfDisabled()
+            }
+
             klikBca.setOnClickListener {
                 val url = "https://m.klikbca.com/login.jsp"
                 intentUri(Intent.ACTION_VIEW, Uri.parse(url))
             }
             infoBca.setOnClickListener {
-                val url = "https://www.bca.co.id/promo?i=ee0f0ff25c938a910373be666d1d2cdeacbc1e23a81b67fbd43f812d8da8dcb2"
+                val url =
+                    "https://www.bca.co.id/promo?i=ee0f0ff25c938a910373be666d1d2cdeacbc1e23a81b67fbd43f812d8da8dcb2"
                 intentUri(Intent.ACTION_VIEW, Uri.parse(url))
             }
 
@@ -61,7 +78,6 @@ class WelcomeActivity : AppCompatActivity() {
             }
 
 
-
         }
 
         welcome = binding.welcome
@@ -70,6 +86,7 @@ class WelcomeActivity : AppCompatActivity() {
 
 
     }
+
 
     private val runnable = object : Runnable {
         override fun run() {
@@ -88,8 +105,23 @@ class WelcomeActivity : AppCompatActivity() {
         shine.startAnimation(animation)
     }
 
+    private fun showAlertMbcaDialog() {
+        val alertBuilder = MaterialAlertDialogBuilder(this, R.style.RoundedMaterialDialog)
+        _alertMbcaBinding = AlertLogMbcaBinding.inflate(layoutInflater)
+        val view = alertMbcaBinding.root
+        alertBuilder.setView(view)
+        val dialog = alertBuilder.create()
+        dialog.setCanceledOnTouchOutside(false)
+        dialog.show()
+        alertMbcaBinding.apply {
+            btnOkMbca.setOnClickListener {
+                openLocationSettings()
+            }
+        }
+    }
+
     private fun showNewRekDialog() {
-        val alertBuilder = MaterialAlertDialogBuilder(this,R.style.RoundedMaterialDialog)
+        val alertBuilder = MaterialAlertDialogBuilder(this, R.style.RoundedMaterialDialog)
         _alertNewRekBinding = AlertNewRekBinding.inflate(layoutInflater)
         val view = alertNewRekBinding.root
         alertBuilder.setView(view)
@@ -103,7 +135,27 @@ class WelcomeActivity : AppCompatActivity() {
                 intentUri(Intent.ACTION_VIEW, Uri.parse(url))
             }
             btnTetapBcaMob.setOnClickListener {
+                intentAct(this@WelcomeActivity, OnboardNewRekActivity::class.java)
+                dialog.dismiss()
             }
+        }
+    }
+
+    fun isLocationEnabled(): Boolean {
+        val locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
+    }
+
+    fun openLocationSettings() {
+        val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+        startActivity(intent)
+    }
+
+    fun checkLocationAndOpenSettingsIfDisabled() {
+        if (!isLocationEnabled()) {
+            showAlertMbcaDialog()
+        } else {
+            intentAct(this, KetentuanActivity::class.java)
         }
     }
 
@@ -111,13 +163,11 @@ class WelcomeActivity : AppCompatActivity() {
         val nfcAdapter = NfcAdapter.getDefaultAdapter(this)
         if (nfcAdapter == null || !nfcAdapter.isEnabled) {
             showNfcDisabledDialog()
-        } else {
-
         }
     }
 
     private fun showNfcDisabledDialog() {
-        val alertBuilder = MaterialAlertDialogBuilder(this,R.style.RoundedMaterialDialog)
+        val alertBuilder = MaterialAlertDialogBuilder(this, R.style.RoundedMaterialDialog)
         _alertFlazzBinding = AlertFlazzBinding.inflate(layoutInflater)
         val view = alertFlazzBinding.root
         alertBuilder.setView(view)
@@ -149,6 +199,40 @@ class WelcomeActivity : AppCompatActivity() {
         handler.removeCallbacks(runnable)
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
 
+        if (requestCode == LOCATION_REQUEST_CODE) {
+            if (isLocationEnabled()) {
+                intentAct(this, MainActivity::class.java)
+                finish()
+            } else {
+                showAlertMbcaDialog()
+            }
+        }
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (mBcaButtonClicked) {
+            if (!isLocationEnabled()) {
+                mBcaButtonClicked = true
+            } else {
+                intentAct(this, KetentuanActivity::class.java)
+                mBcaButtonClicked = false
+                finish()
+            }
+
+        }
+    }
+
+    override fun onBackPressed() {
+        if (!isLocationEnabled()) {
+            showAlertMbcaDialog()
+        } else {
+            super.onBackPressed()
+        }
+    }
 
 }

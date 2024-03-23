@@ -11,4 +11,5 @@
     <color name="blue_text_color">#0c5ea9</color>
     <color name="colorGrayDarker">#bcbcbc</color>
     <color name="transparant">#00000000</color>
+    <color name="color_text_black_zeplin">#4f4f4f</color>
 </resources>

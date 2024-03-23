@@ -15,5 +15,17 @@
     <string name="nfc_request_active_text">Aktifkan fitur NFC pada\nponsel Anda.</string>
     <string name="title_mybca_pemrek_popup">Yuk, coba pengalaman baru buka rekening &amp; bertransaksi di aplikasi myBCA!</string>
     <string name="body_mybca_pemrek_popup_google">Dengan menekan tombol di bawah, Anda akan diarahkan ke Play Store</string>
-    <string name="title_menu_1">Buka rekening dari handphone \\ntanpa minimum setoran awal</string>
+    <string name="title_menu_1">Buka rekening dari handphone tanpa minimum setoran awal</string>
+    <string name="title_menu_2">Langsung dapat fasilitas mobile dan internet banking</string>
+    <string name="title_menu_3">Mudah setor dan tarik tunai dengan fitur Cardless di mobile banking</string>
+    <string name="title_menu_4">Praktis bayar belanja dengan QR di merchant berlogo QRIS</string>
+    <string name="text_newrek_nabung_kini">Nabung kini lebih mudah,\ncukup ikuti langkah berikut</string>
+    <string name="siapkan_ktp">Siapkan KTP-el, NPWP (jika ada), lalu isi data diri</string>
+    <string name="do_verif_data">Lakukan Video Call dengan Customer Service BCA untuk verifikasi data</string>
+    <string name="do_active_internet"><![CDATA[Aktifkan mobile & internet banking untuk kemudahan transaksi]]></string>
+    <string name="do_setoran">Lakukan setoran awal ke rekening baru</string>
+    <string name="aktifkan_layanan_lokasi">Aktifkan Layanan Lokasi</string>
+    <string name="do_active_gps">Untuk bisa menggunakan BCA mobile, mohon aktifkan Layanan Lokasi pada menu Pengaturan perangkat Anda</string>
+    <string name="a_definisi">A. DEFINISI</string>
+
 </resources>
