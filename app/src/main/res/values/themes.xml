@@ -19,7 +19,13 @@
         <item name="shapeAppearanceOverlay">@style/cornerDialogFlaz</item>
         <item name="colorSurface">@color/white</item>
     </style>
-    
+
+    <style name="MyEditTextStyle" parent="Widget.AppCompat.EditText">
+        <item name="android:background">@drawable/input_edittext_selector</item>
+        <item name="android:padding">4dp</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
     <style name="cornerDialogFlaz">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">16dp</item>

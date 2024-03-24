@@ -1,8 +1,10 @@
 package com.bank.bcamobiie
 
 
+import android.Manifest
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.location.LocationManager
 import android.net.Uri
 import android.nfc.NfcAdapter
@@ -14,8 +16,11 @@ import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.TranslateAnimation
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.bank.bcamobiie.databinding.ActivityWelcomeBinding
 import com.bank.bcamobiie.databinding.AlertFlazzBinding
+import com.bank.bcamobiie.databinding.AlertGpsPermissionBinding
 import com.bank.bcamobiie.databinding.AlertLogMbcaBinding
 import com.bank.bcamobiie.databinding.AlertNewRekBinding
 import com.bank.bcamobiie.newrek.OnboardNewRekActivity
@@ -36,11 +41,17 @@ class WelcomeActivity : AppCompatActivity() {
 
     private var _alertMbcaBinding: AlertLogMbcaBinding? = null
     private val alertMbcaBinding: AlertLogMbcaBinding get() = _alertMbcaBinding!!
-    private val LOCATION_REQUEST_CODE = 123
+
+    private var _alertGpsPermission: AlertGpsPermissionBinding? = null
+    private val alertGpsPermission: AlertGpsPermissionBinding get() = _alertGpsPermission!!
+
+    private val locationRequestCode = 123
 
     private var mBcaButtonClicked = false
 
+    private var dialogShoDown = false
     private val handler = Handler()
+    private val locationPermissionRequestCode = 1001
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,8 +66,7 @@ class WelcomeActivity : AppCompatActivity() {
             }
 
             mBca.setOnClickListener {
-                mBcaButtonClicked = true
-                checkLocationAndOpenSettingsIfDisabled()
+                checkGranted()
             }
 
             klikBca.setOnClickListener {
@@ -79,7 +89,6 @@ class WelcomeActivity : AppCompatActivity() {
 
 
         }
-
         welcome = binding.welcome
         shine = binding.shine
         handler.postDelayed(runnable, 2)
@@ -91,7 +100,7 @@ class WelcomeActivity : AppCompatActivity() {
     private val runnable = object : Runnable {
         override fun run() {
             shineEffect()
-            handler.postDelayed(this, 10000)
+            handler.postDelayed(this, 5000)
         }
     }
 
@@ -106,18 +115,22 @@ class WelcomeActivity : AppCompatActivity() {
     }
 
     private fun showAlertMbcaDialog() {
-        val alertBuilder = MaterialAlertDialogBuilder(this, R.style.RoundedMaterialDialog)
-        _alertMbcaBinding = AlertLogMbcaBinding.inflate(layoutInflater)
-        val view = alertMbcaBinding.root
-        alertBuilder.setView(view)
-        val dialog = alertBuilder.create()
-        dialog.setCanceledOnTouchOutside(false)
-        dialog.show()
-        alertMbcaBinding.apply {
-            btnOkMbca.setOnClickListener {
-                openLocationSettings()
+        if (dialogShoDown) {
+            val alertBuilder = MaterialAlertDialogBuilder(this, R.style.RoundedMaterialDialog)
+            _alertMbcaBinding = AlertLogMbcaBinding.inflate(layoutInflater)
+            val view = alertMbcaBinding.root
+            alertBuilder.setView(view)
+            val dialog = alertBuilder.create()
+            dialog.setCancelable(false)
+            dialog.setCanceledOnTouchOutside(false)
+            dialog.show()
+            alertMbcaBinding.apply {
+                btnOkMbca.setOnClickListener {
+                    openLocationSettings()
+                }
             }
         }
+
     }
 
     private fun showNewRekDialog() {
@@ -141,21 +154,60 @@ class WelcomeActivity : AppCompatActivity() {
         }
     }
 
-    fun isLocationEnabled(): Boolean {
+    private fun isLocationEnabled(): Boolean {
         val locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
     }
 
-    fun openLocationSettings() {
+    private fun openLocationSettings() {
         val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
         startActivity(intent)
     }
 
-    fun checkLocationAndOpenSettingsIfDisabled() {
+    private fun checkLocationAndOpenSettingsIfDisabled() {
         if (!isLocationEnabled()) {
+            dialogShoDown = true
             showAlertMbcaDialog()
         } else {
             intentAct(this, KetentuanActivity::class.java)
+        }
+    }
+
+    private fun showNeedGpGrantedDialog() {
+        val alertBuilder = MaterialAlertDialogBuilder(this, R.style.RoundedMaterialDialog)
+        _alertGpsPermission = AlertGpsPermissionBinding.inflate(layoutInflater)
+        val view = alertGpsPermission.root
+        alertBuilder.setView(view)
+        val dialog = alertBuilder.create()
+        dialog.setCanceledOnTouchOutside(false)
+        dialog.setCancelable(false)
+        dialog.show()
+        alertGpsPermission.apply {
+            btnTolak.setOnClickListener {
+                dialog.dismiss()
+            }
+            btnIzinkan.setOnClickListener {
+                dialog.dismiss()
+                ActivityCompat.requestPermissions(
+                    this@WelcomeActivity,
+                    arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                    locationPermissionRequestCode
+                )
+            }
+        }
+    }
+
+    private fun checkGranted() {
+        if (ContextCompat.checkSelfPermission(
+                this@WelcomeActivity,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            )
+            != PackageManager.PERMISSION_GRANTED
+        ) {
+            showNeedGpGrantedDialog()
+        } else {
+            mBcaButtonClicked = true
+            checkLocationAndOpenSettingsIfDisabled()
         }
     }
 
@@ -202,12 +254,12 @@ class WelcomeActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (requestCode == LOCATION_REQUEST_CODE) {
+        if (requestCode == locationRequestCode) {
             if (isLocationEnabled()) {
                 intentAct(this, MainActivity::class.java)
                 finish()
             } else {
-                showAlertMbcaDialog()
+                checkLocationAndOpenSettingsIfDisabled()
             }
         }
 
@@ -219,20 +271,29 @@ class WelcomeActivity : AppCompatActivity() {
             if (!isLocationEnabled()) {
                 mBcaButtonClicked = true
             } else {
-                intentAct(this, KetentuanActivity::class.java)
+                dialogShoDown = false
+                val intent = Intent(this, KetentuanActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                startActivity(intent)
                 mBcaButtonClicked = false
-                finish()
             }
 
         }
     }
 
-    override fun onBackPressed() {
-        if (!isLocationEnabled()) {
-            showAlertMbcaDialog()
-        } else {
-            super.onBackPressed()
-        }
-    }
 
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == locationPermissionRequestCode) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                mBcaButtonClicked = true
+                checkLocationAndOpenSettingsIfDisabled()
+            }
+        }
+
+    }
 }

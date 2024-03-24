@@ -27,5 +27,11 @@
     <string name="aktifkan_layanan_lokasi">Aktifkan Layanan Lokasi</string>
     <string name="do_active_gps">Untuk bisa menggunakan BCA mobile, mohon aktifkan Layanan Lokasi pada menu Pengaturan perangkat Anda</string>
     <string name="a_definisi">A. DEFINISI</string>
+    <string name="term_and_condition">KETENTUAN m-BCA (MOBILE BANKING) \nPT BANK CENTRAL ASIA Tbk</string>
+    <string name="bca_need_your_location">BCA Mobile Membutuhkan Akses \nLokasi Anda</string>
+    <string name="bottom_text_ketentuan">Ketentuan m-BCA (Mobile Banking) PT Bank Central Asia Tbk ini telah disesuaikan dengan ketentuan peraturan perundang undangan termasuk ketentuan Peraturan Otoritas Jasa Keuangan</string>
+    <string name="m_bca">m-BCA</string>
+    <string name="masukkan_16_angka_no_kartu_atm_anda">Masukkan 16 angka No. Kartu ATM Anda:</string>
+    <string name="send_sms">Kirimkan SMS yang tampil setelah menekan tombok OK.\nTransaksi ini dikenakan biaya SMS</string>
 
 </resources>

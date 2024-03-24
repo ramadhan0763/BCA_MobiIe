@@ -45,4 +45,136 @@
         android:layout_marginStart="48dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+
+    <TextView
+        android:id="@+id/noDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:fontFamily="@font/robotoregular"
+        android:text="1."
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        android:layout_marginStart="60dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descTerm" />
+
+    <TextView
+        android:id="@+id/detailTerm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/robotoregular"
+        android:text="dadsa"
+        android:textColor="@color/black"
+        android:layout_marginTop="1dp"
+        android:textSize="12sp"
+        android:layout_marginStart="80dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descTerm" />
+
+    <TextView
+        android:id="@+id/noDetailB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:fontFamily="@font/robotoregular"
+        android:text="1."
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        android:layout_marginStart="60dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/noDetail" />
+
+    <TextView
+        android:id="@+id/detailTermB"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/robotoregular"
+        android:text="dadsa"
+        android:textColor="@color/black"
+        android:layout_marginTop="1dp"
+        android:textSize="12sp"
+        android:layout_marginStart="80dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detailTerm" />
+
+    <TextView
+        android:id="@+id/noDetailC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:fontFamily="@font/robotoregular"
+        android:text="1."
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        android:layout_marginStart="60dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/noDetailB" />
+
+    <TextView
+        android:id="@+id/detailTermC"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/robotoregular"
+        android:text="dadsa"
+        android:textColor="@color/black"
+        android:layout_marginTop="1dp"
+        android:textSize="12sp"
+        android:layout_marginStart="80dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detailTermB" />
+
+    <TextView
+        android:id="@+id/noDetailD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:fontFamily="@font/robotoregular"
+        android:text="1."
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        android:layout_marginStart="60dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/noDetailC" />
+
+    <TextView
+        android:id="@+id/detailTermD"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/robotoregular"
+        android:text="dadsa"
+        android:textColor="@color/black"
+        android:layout_marginTop="1dp"
+        android:textSize="12sp"
+        android:layout_marginStart="80dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detailTermC" />
+
+
+    <TextView
+        android:id="@+id/noDetailE"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:fontFamily="@font/robotoregular"
+        android:text="1."
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        android:layout_marginStart="60dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/noDetailD" />
+
+    <TextView
+        android:id="@+id/detailTermE"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/robotoregular"
+        android:text="dadsa"
+        android:textColor="@color/black"
+        android:layout_marginTop="1dp"
+        android:textSize="12sp"
+        android:layout_marginStart="80dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detailTermD" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

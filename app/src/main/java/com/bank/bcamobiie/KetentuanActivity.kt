@@ -1,5 +1,6 @@
 package com.bank.bcamobiie
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.text.HtmlCompat
@@ -11,8 +12,8 @@ import com.bank.bcamobiie.datadummy.DataDummyTerm
 
 class KetentuanActivity : AppCompatActivity() {
 
-    private var _binding : ActivityKetentuanBinding? = null
-    private val binding : ActivityKetentuanBinding get() =  _binding!!
+    private var _binding: ActivityKetentuanBinding? = null
+    private val binding: ActivityKetentuanBinding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,5 +27,25 @@ class KetentuanActivity : AppCompatActivity() {
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
 
+        binding.apply {
+            btnReject.setOnClickListener {
+                finish()
+            }
+
+            btnAccept.setOnClickListener {
+                val intent = Intent(this@KetentuanActivity, InputCardActivity::class.java)
+                startActivity(intent)
+            }
+        }
+
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val intent = Intent(this, WelcomeActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(intent)
+        finish()
+    }
+
 }
