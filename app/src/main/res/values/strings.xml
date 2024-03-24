@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">BCA MobiIe</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_akunsaya">Akun Saya</string>
+    <string name="title_notifications">Notifikasi</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="copyright_content_wording_text">\n<b>BCA</b> All Rights Reserved.</string>
@@ -33,5 +33,10 @@
     <string name="m_bca">m-BCA</string>
     <string name="masukkan_16_angka_no_kartu_atm_anda">Masukkan 16 angka No. Kartu ATM Anda:</string>
     <string name="send_sms">Kirimkan SMS yang tampil setelah menekan tombok OK.\nTransaksi ini dikenakan biaya SMS</string>
+    <string name="notice_succes_input">Setiap kali Anda masuk ke menu m-BCA, Anda memerlukan Kode Akses terdiri dari 6 karakter huruf dan angka (minimal salah satunya huruf).</string>
+    <string name="silahkan_menentukan_kode_akses_anda">Silahkan menentukan Kode Akses Anda :</string>
+    <string name="confirmation_code_acces">Konfirmasi ulang kode Akses Anda:</string>
+    <string name="incorret_code_acces">111 - Kode Akses baru yang Anda \nmasukkan tidak sesuai</string>
+    <string name="transaksi">Transaksi</string>
 
 </resources>

@@ -24,8 +24,10 @@ import com.bank.bcamobiie.databinding.AlertGpsPermissionBinding
 import com.bank.bcamobiie.databinding.AlertLogMbcaBinding
 import com.bank.bcamobiie.databinding.AlertNewRekBinding
 import com.bank.bcamobiie.newrek.OnboardNewRekActivity
+import com.bank.bcamobiie.viewmodel.InputDataViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.coroutines.Runnable
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class WelcomeActivity : AppCompatActivity() {
 
@@ -45,13 +47,13 @@ class WelcomeActivity : AppCompatActivity() {
     private var _alertGpsPermission: AlertGpsPermissionBinding? = null
     private val alertGpsPermission: AlertGpsPermissionBinding get() = _alertGpsPermission!!
 
-    private val locationRequestCode = 123
-
     private var mBcaButtonClicked = false
 
     private var dialogShoDown = false
     private val handler = Handler()
     private val locationPermissionRequestCode = 1001
+
+    private val viewModel: InputDataViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,7 +68,14 @@ class WelcomeActivity : AppCompatActivity() {
             }
 
             mBca.setOnClickListener {
-                checkGranted()
+                viewModel.getSession().observe(this@WelcomeActivity){ data ->
+                    if (data.isLogin){
+                        startActivity(Intent(this@WelcomeActivity, MainActivity::class.java))
+                    }else{
+                        checkGranted()
+                    }
+                }
+
             }
 
             klikBca.setOnClickListener {
@@ -251,19 +260,7 @@ class WelcomeActivity : AppCompatActivity() {
         handler.removeCallbacks(runnable)
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
 
-        if (requestCode == locationRequestCode) {
-            if (isLocationEnabled()) {
-                intentAct(this, MainActivity::class.java)
-                finish()
-            } else {
-                checkLocationAndOpenSettingsIfDisabled()
-            }
-        }
-
-    }
 
     override fun onResume() {
         super.onResume()
