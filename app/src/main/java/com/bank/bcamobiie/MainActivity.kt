@@ -1,7 +1,9 @@
 package com.bank.bcamobiie
 
 import android.os.Bundle
+import android.view.animation.ScaleAnimation
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.children
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.bank.bcamobiie.databinding.ActivityMainBinding
@@ -18,6 +20,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val navView: BottomNavigationView = binding.navView
+        navView.children.forEach { child ->
+            val anim = ScaleAnimation(1f, 1f, 1f, 1f)
+            anim.duration = 0
+            child.startAnimation(anim)
+        }
 
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main) as NavHostFragment

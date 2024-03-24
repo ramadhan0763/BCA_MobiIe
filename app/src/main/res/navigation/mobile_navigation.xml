@@ -12,10 +12,10 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.bank.bcamobiie.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_akunsaya"
+        android:name="com.bank.bcamobiie.ui.dashboard.AkunSayaFragment"
+        android:label="@string/title_akunsaya"
+        tools:layout="@layout/fragment_akun_saya" />
 
     <fragment
         android:id="@+id/navigation_notifications"

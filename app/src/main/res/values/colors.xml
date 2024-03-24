@@ -9,7 +9,8 @@
     <color name="white">#FFFFFFFF</color>
     <color name="blue">#005FAF</color>
     <color name="blue_text_color">#0c5ea9</color>
-    <color name="colorGrayDarker">#bcbcbc</color>
+    <color name="colorGrayDarker">#919191</color>
     <color name="transparant">#00000000</color>
     <color name="color_text_black_zeplin">#4f4f4f</color>
+    <color name="navigation_bottom">#F9F9F9</color>
 </resources>

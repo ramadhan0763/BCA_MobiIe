@@ -26,6 +26,19 @@
         <item name="android:textColor">@android:color/black</item>
     </style>
 
+    <style name="NoShiftBottomNavigationView" parent="Widget.Design.BottomNavigationView">
+        <item name="labelVisibilityMode">labeled</item>
+        <item name="itemHorizontalTranslationEnabled">false</item>
+        <item name="android:scaleX">1.0</item>
+        <item name="android:scaleY">1.0</item>
+    </style>
+
+    <style name="BottomNavigationTextStyle">
+        <item name="android:fontFamily">@font/robotomedium</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
     <style name="cornerDialogFlaz">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">16dp</item>
