@@ -1,8 +1,10 @@
-package com.bank.bcamobiie
+package com.bank.bcamobiie.activity
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.bank.bcamobiie.R
 import com.bank.bcamobiie.databinding.ActivitySuccesInputBinding
 import com.bank.bcamobiie.databinding.AlertWrongCodeAccesBinding
 import com.bank.bcamobiie.datastore.Userdata
@@ -49,7 +51,7 @@ class SuccesInputActivity : AppCompatActivity() {
     }
 
     private fun showAlert() {
-        val alertBuilder = MaterialAlertDialogBuilder(this, R.style.RoundedMaterialDialog)
+        val alertBuilder = AlertDialog.Builder(this)
         _alertWrong = AlertWrongCodeAccesBinding.inflate(layoutInflater)
         val view = alertWrong.root
         alertBuilder.setView(view)

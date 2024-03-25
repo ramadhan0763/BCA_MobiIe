@@ -4,7 +4,6 @@ import android.content.Intent
 import android.icu.text.SimpleDateFormat
 import android.icu.util.Calendar
 import android.net.Uri
-import com.bank.bcamobiie.SuccesInputActivity
 import java.util.Locale
 
 object Utils {

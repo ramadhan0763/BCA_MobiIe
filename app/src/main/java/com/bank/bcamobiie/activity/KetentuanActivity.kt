@@ -1,11 +1,9 @@
-package com.bank.bcamobiie
+package com.bank.bcamobiie.activity
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.text.HtmlCompat
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.bank.bcamobiie.adapter.DataTermAdapter
 import com.bank.bcamobiie.databinding.ActivityKetentuanBinding
 import com.bank.bcamobiie.datadummy.DataDummyTerm

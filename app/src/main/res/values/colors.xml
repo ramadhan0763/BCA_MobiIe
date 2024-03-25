@@ -12,5 +12,7 @@
     <color name="colorGrayDarker">#919191</color>
     <color name="transparant">#00000000</color>
     <color name="color_text_black_zeplin">#4f4f4f</color>
-    <color name="navigation_bottom">#F9F9F9</color>
+    <color name="color_text_black_zeplin2">#939393</color>
+    <color name="navigation_bottom">#F1EFEF</color>
+    <color name="homeBgColor">#002245</color>
 </resources>

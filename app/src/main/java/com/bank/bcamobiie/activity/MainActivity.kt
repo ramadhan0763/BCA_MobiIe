@@ -1,4 +1,4 @@
-package com.bank.bcamobiie
+package com.bank.bcamobiie.activity
 
 import android.os.Bundle
 import android.view.animation.ScaleAnimation
@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.children
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.bank.bcamobiie.R
 import com.bank.bcamobiie.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -20,6 +21,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val navView: BottomNavigationView = binding.navView
+
+        val indexes = 2
+            navView.menu.getItem(indexes).isEnabled = false
+
         navView.children.forEach { child ->
             val anim = ScaleAnimation(1f, 1f, 1f, 1f)
             anim.duration = 0

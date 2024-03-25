@@ -1,4 +1,4 @@
-package com.bank.bcamobiie
+package com.bank.bcamobiie.activity
 
 import android.content.Intent
 import android.net.Uri

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:id="@+id/frame_container"
     android:background="@drawable/xrootmenubg"
-    tools:context=".WelcomeActivity">
+    tools:context=".activity.WelcomeActivity">
 
     <ImageButton
         android:id="@+id/btnAbout"
@@ -70,29 +70,40 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/klikBca" />
-    <ImageButton
-        android:id="@+id/newRek"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:layout_marginTop="16dp"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="26dp"
-        android:background="@drawable/clicknewrekselector"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/infoBca" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/infoBca">
 
-    <ImageButton
-        android:id="@+id/flazz"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="26dp"
-        android:background="@drawable/clickflazzselector"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/newRek" />
+        <ImageButton
+            android:id="@+id/newRek"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/clicknewrekselector" />
+
+        <ImageButton
+            android:id="@+id/changePin"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/clickbtnchangepin" />
+
+
+        <ImageButton
+            android:id="@+id/flazz"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/clickflazzselector" />
+
+    </LinearLayout>
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

@@ -11,6 +11,10 @@
         android:title="@string/transaksi"/>
 
     <item
+        android:id="@+id/navigation_qris"
+        android:title="@string/qris_navigation" />
+
+    <item
         android:id="@+id/navigation_notifications"
         android:icon="@drawable/icon_notif_grey"
         android:title="@string/title_notifications" />

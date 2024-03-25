@@ -38,5 +38,10 @@
     <string name="confirmation_code_acces">Konfirmasi ulang kode Akses Anda:</string>
     <string name="incorret_code_acces">111 - Kode Akses baru yang Anda \nmasukkan tidak sesuai</string>
     <string name="transaksi">Transaksi</string>
+    <string name="kode_akses">Kode Akses</string>
+    <string name="input_6_alphanum">Input 6 alphanum</string>
+    <string name="qris_navigation"></string>
+    <string name="selamat_datang">Selamat Datang,</string>
+    <string name="andi_salam_syahputra">ANDI SALAM SYAHPUTRA</string>
 
 </resources>

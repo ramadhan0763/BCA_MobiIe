@@ -1,4 +1,4 @@
-package com.bank.bcamobiie
+package com.bank.bcamobiie.activity
 
 
 import android.Manifest
@@ -15,10 +15,13 @@ import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.TranslateAnimation
 import android.widget.ImageView
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.bank.bcamobiie.R
 import com.bank.bcamobiie.databinding.ActivityWelcomeBinding
+import com.bank.bcamobiie.databinding.AlertAccessLogBinding
 import com.bank.bcamobiie.databinding.AlertFlazzBinding
 import com.bank.bcamobiie.databinding.AlertGpsPermissionBinding
 import com.bank.bcamobiie.databinding.AlertLogMbcaBinding
@@ -47,6 +50,9 @@ class WelcomeActivity : AppCompatActivity() {
     private var _alertGpsPermission: AlertGpsPermissionBinding? = null
     private val alertGpsPermission: AlertGpsPermissionBinding get() = _alertGpsPermission!!
 
+    private var _alertAccesPin: AlertAccessLogBinding? = null
+    private val alertAccesPin: AlertAccessLogBinding get() = _alertAccesPin!!
+
     private var mBcaButtonClicked = false
 
     private var dialogShoDown = false
@@ -67,10 +73,18 @@ class WelcomeActivity : AppCompatActivity() {
                 intentAct(this@WelcomeActivity, AboutActivity::class.java)
             }
 
+            viewModel.getSession().observe(this@WelcomeActivity){ isLogin ->
+                if (!isLogin.isLogin){
+                    changePin.visibility = View.GONE
+                }else{
+                    changePin.visibility = View.VISIBLE
+                }
+            }
+
             mBca.setOnClickListener {
                 viewModel.getSession().observe(this@WelcomeActivity){ data ->
                     if (data.isLogin){
-                        startActivity(Intent(this@WelcomeActivity, MainActivity::class.java))
+                        showAlertInputAccesCode()
                     }else{
                         checkGranted()
                     }
@@ -121,6 +135,26 @@ class WelcomeActivity : AppCompatActivity() {
         animation.fillAfter = false
         animation.interpolator = AccelerateDecelerateInterpolator()
         shine.startAnimation(animation)
+    }
+
+    private fun showAlertInputAccesCode() {
+            val alertBuilder = AlertDialog.Builder(this)
+            _alertAccesPin= AlertAccessLogBinding.inflate(layoutInflater)
+            val view = alertAccesPin.root
+            alertBuilder.setView(view)
+            val dialog = alertBuilder.create()
+            dialog.setCancelable(false)
+            dialog.setCanceledOnTouchOutside(false)
+            dialog.show()
+            alertAccesPin.apply {
+                btnCancelAcces.setOnClickListener {
+                    dialog.dismiss()
+                }
+                btnLoginAcces.setOnClickListener {
+                    intentActFinish(this@WelcomeActivity, MainActivity::class.java)
+                }
+            }
+
     }
 
     private fun showAlertMbcaDialog() {
@@ -249,6 +283,12 @@ class WelcomeActivity : AppCompatActivity() {
         val intent = Intent(context, activityClass)
         context.startActivity(intent)
     }
+    private fun intentActFinish(context: Context, activityClass: Class<*>) {
+        val intent = Intent(context, activityClass)
+        context.startActivity(intent)
+        finish()
+    }
+
 
     private fun intentUri(destination: String, uri: Uri) {
         val intent = Intent(destination, uri)

@@ -18,14 +18,14 @@
         android:theme="@style/Theme.BCAMobiIe"
         tools:targetApi="31">
         <activity
-            android:name=".SuccesInputActivity"
+            android:name=".activity.SuccesInputActivity"
             android:exported="false" />
         <activity
-            android:name=".InputCardActivity"
+            android:name=".activity.InputCardActivity"
             android:windowSoftInputMode="adjustResize"
             android:exported="false" />
         <activity
-            android:name=".KetentuanActivity"
+            android:name=".activity.KetentuanActivity"
             android:exported="false" />
         <activity
             android:name=".newrek.NewRekActivity"
@@ -36,17 +36,17 @@
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name=".AboutActivity"
+            android:name=".activity.AboutActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.MainActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name=".WelcomeActivity"
+            android:name=".activity.WelcomeActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
