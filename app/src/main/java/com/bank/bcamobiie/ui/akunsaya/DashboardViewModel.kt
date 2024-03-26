@@ -1,4 +1,4 @@
-package com.bank.bcamobiie.ui.dashboard
+package com.bank.bcamobiie.ui.akunsaya
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

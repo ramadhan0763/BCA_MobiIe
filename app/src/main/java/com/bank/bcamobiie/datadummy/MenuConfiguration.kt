@@ -22,3 +22,17 @@ val dataMenu = listOf<MenuConfiguration>(
     MenuConfiguration(10, R.drawable.clickmenu10, "Lifestyle")
 
 )
+
+
+data class MenuConfMyAcc(
+    val id: Int,
+    val image : Int,
+    val desc: String
+)
+
+val dataMenuMyAcc = listOf(
+    MenuConfMyAcc(1,R.drawable.clickmenuacc1, "kontrol"),
+    MenuConfMyAcc(2,R.drawable.clickmenuacc2, "Atur Limit"),
+    MenuConfMyAcc(3,R.drawable.clickmenuacc3, "Blokir"),
+    MenuConfMyAcc(4,R.drawable.clickmenuacc4, "Ganti Kartu"),
+)

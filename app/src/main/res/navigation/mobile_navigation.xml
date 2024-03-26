@@ -13,7 +13,7 @@
 
     <fragment
         android:id="@+id/navigation_akunsaya"
-        android:name="com.bank.bcamobiie.ui.dashboard.AkunSayaFragment"
+        android:name="com.bank.bcamobiie.ui.akunsaya.AkunSayaFragment"
         android:label="@string/title_akunsaya"
         tools:layout="@layout/fragment_akun_saya" />
 
